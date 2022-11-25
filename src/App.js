@@ -14,11 +14,9 @@ class App extends Component {
 
   handleChange = (event) => { 
       const { name, value } = event.target
-      this.setState({
-        generalInformation: {
-          [name]: value
-        }
-      })
+      this.setState(prevState => ({
+      generalInformation: {... prevState.generalInformation, [name]: value}}
+    ))
       console.log(this.state)
   }
 
