@@ -1,4 +1,4 @@
-import React, { Component } from "react"
+import React from "react"
 
 
 const MainForm = (props) => {
@@ -8,6 +8,7 @@ const MainForm = (props) => {
     return (
         <div>
             <form>
+                <h2>General Information</h2>
                 <input type="text"
                 placeholder="First Name"
                 name="firstName"
@@ -40,6 +41,7 @@ const MainForm = (props) => {
                 className = "generalInformation"
                  />
 
+                <h2>Education</h2>
                 <input type="text"
                 placeholder="Institute's Name"
                 name="name"
@@ -54,15 +56,60 @@ const MainForm = (props) => {
                 value={props.schoolTitle}
                 onChange = {props.handleChange}
                 className = "education"
-                 />
+                />
 
-                <input type="text"
+                <input type="date"
                 placeholder="Date of Completion"
                 name="date"
                 value={props.schoolDate}
                 onChange = {props.handleChange}
                 className = "education"
-                 />
+                />
+
+                <h2>Experience</h2>
+                
+                <input type="text"
+                placeholder="Company Name"
+                name="name"
+                value={props.companyName}
+                onChange = {props.handleChange}
+                className = "experience"
+                />
+
+                
+                <input type="text"
+                placeholder="Job Title"
+                name="title"
+                value={props.jobTitle}
+                onChange = {props.handleChange}
+                className = "experience"
+                />
+
+                
+                <input type="text"
+                placeholder="Job Task"
+                name="tasks"
+                value={props.tasks}
+                onChange = {props.handleChange}
+                className = "experience"
+                />
+
+                
+                <input type="date"
+                placeholder="Start Date"
+                name="dateStart"
+                value={props.startDate}
+                onChange = {props.handleChange}
+                className = "experience"
+                />
+
+                <input type="date"
+                placeholder="End Date"
+                name="dateEnd"
+                value={props.endDate}
+                onChange = {props.handleChange}
+                className = "experience"
+                />
             </form>
         </div>
     )

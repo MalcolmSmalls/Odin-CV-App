@@ -16,9 +16,11 @@ class App extends Component {
       const { name, value, className } = event.target
       this.setState(prevState => {
       if(className === "generalInformation"){
-        return {generalInformation: {... prevState.generalInformation, [name]: value}}
+        return {generalInformation: {...prevState.generalInformation, [name]: value}}
       }else if(className === "education"){
-        return {education: [{... prevState.education[0], [name]: value}]}
+        return {education: [{...prevState.education[0], [name]: value}]}
+      }else if(className === "experience"){
+        return {experience: [{...prevState.experience[0], [name]: value}]}
       }
 }
     )
@@ -33,15 +35,19 @@ class App extends Component {
 
     return (
       <main>
-        <MainForm generalInformation={generalInformation}
-                  education={education} 
-                  experience={experience} 
+        <MainForm 
                   handleChange={this.handleChange} 
+
                   schoolName={education.name}
                   schoolTitle = {education.title}
                   schoolDate = {education.date}
+                  companyName={experience.name}
+
+
                   firstName={generalInformation.firstName}
-                  lastName={generalInformation.lastName}/>
+                  lastName={generalInformation.lastName}
+                  
+                  />
       </main>
 
     )
