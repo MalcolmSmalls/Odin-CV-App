@@ -1,6 +1,8 @@
 import './App.css';
 import React, { Component } from "react"
-import MainForm from "./Components/MainForm"
+import GeneralInformation from "./Components/GeneralInformation"
+import Education from "./Components/Education"
+import Experience from "./Components/Experience"
 
 class App extends Component {
   constructor () {
@@ -35,23 +37,40 @@ class App extends Component {
 
     return (
       <main>
-        <MainForm 
-                  handleChange={this.handleChange} 
+        <form>
+          <GeneralInformation 
+                    handleChange={this.handleChange} 
 
-                  firstName={generalInformation.firstName}
-                  lastName={generalInformation.lastName}
-                  email={generalInformation.email}
-                  phone={generalInformation.phone}
-                  schoolName={education.name}
-                  schoolTitle = {education.title}
-                  schoolDate = {education.date}
-                  
-                  companyName={experience.name}
-                  jobTitle={experience.title}
-                  tasks={experience.tasks}
-                  startDate={experience.dateStart}
-                  endDate = {experience.dateEnd}
-                  />
+                    firstName={generalInformation.firstName}
+                    lastName={generalInformation.lastName}
+                    email={generalInformation.email}
+                    phone={generalInformation.phone}
+                    />
+
+            <Education
+                    schoolName={education.name}
+                    schoolTitle = {education.title}
+                    schoolDate = {education.date}
+                    handleChange={this.handleChange}
+            />
+
+            <Experience 
+                    companyName={experience.name}
+                    jobTitle={experience.title}
+                    tasks={experience.tasks}
+                    startDate={experience.dateStart}
+                    endDate = {experience.dateEnd}
+            />
+
+
+            
+              <div className="submit-div">
+                  <button>Submit</button>
+                  <button>Edit</button>
+
+              </div>
+        </form>
+
       </main>
 
     )
