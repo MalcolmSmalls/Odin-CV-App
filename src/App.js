@@ -13,10 +13,15 @@ class App extends Component {
   }
 
   handleChange = (event) => { 
-      const { name, value } = event.target
-      this.setState(prevState => ({
-      generalInformation: {... prevState.generalInformation, [name]: value}}
-    ))
+      const { name, value, className } = event.target
+      this.setState(prevState => {
+      if(className === "generalInformation"){
+        return {generalInformation: {... prevState.generalInformation, [name]: value}}
+      }else if(className === "education"){
+        return {education: [{... prevState.education[0], [name]: value}]}
+      }
+}
+    )
       console.log(this.state)
   }
 
@@ -32,6 +37,9 @@ class App extends Component {
                   education={education} 
                   experience={experience} 
                   handleChange={this.handleChange} 
+                  schoolName={education.name}
+                  schoolTitle = {education.title}
+                  schoolDate = {education.date}
                   firstName={generalInformation.firstName}
                   lastName={generalInformation.lastName}/>
       </main>
