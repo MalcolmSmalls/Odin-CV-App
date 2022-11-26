@@ -9,8 +9,10 @@ class App extends Component {
     super()
     this.state = {
       generalInformation: { firstName: "", lastName: "", email: "", phone: ""},
-      education: [{name: "", title: "", date: ""}],
-      experience: [{name: "", title: "", tasks: "", dateStart: "", dateEnd: ""}]
+      education: {name: "", title: "", date: ""},
+      experience: {name: "", title: "", tasks: "", dateStart: "", dateEnd: ""},
+      educationArr: [],
+      experienceArr: []
     }
   }
 
@@ -20,9 +22,9 @@ class App extends Component {
       if(className === "generalInformation"){
         return {generalInformation: {...prevState.generalInformation, [name]: value}}
       }else if(className === "education"){
-        return {education: [{...prevState.education[0], [name]: value}]}
+        return {education: {...prevState.education, [name]: value}}
       }else if(className === "experience"){
-        return {experience: [{...prevState.experience[0], [name]: value}]}
+        return {experience: {...prevState.experience, [name]: value}}
       }
 }
     )
@@ -30,9 +32,63 @@ class App extends Component {
   }
 
 
+//   addEducation = (event) => {
+//     for(let i = 0; i < this.state.educationArr.length; i++){
+//       return (
+//         <Education
+//         schoolName={this.state.education.name}
+//         schoolTitle = {this.state.education.title}
+//         schoolDate = {this.state.education.date}
+//         handleChange={this.handleChange}
+// />
+//       )
+//     }
+//   }
+
+
+  handleEducation = (event) => {
+    event.preventDefault()
+    const { name, value } = event.target
+    
+    this.setState(prevState => {
+      return {educationArr: [...prevState.educationArr, prevState.education]}
+    })
+
+
+    console.log(this.state.educationArr)
+
+  }
+
+
   render(){
 
     const { generalInformation, education, experience } = this.state
+    
+
+    const educationAdder = this.state.educationArr.map(school => {
+      return(
+        <Education
+        schoolName={education.name}
+        schoolTitle = {education.title}
+        schoolDate = {education.date}
+        handleChange={this.handleChange}
+        handleEducation={this.handleEducation}
+      />
+      )
+    })
+    // const educationAdder = function () {
+    //   for(let i = 0; i <= this.state.educationArr.length; i++){
+    //     return(
+    //       <Education
+    //       schoolName={education.name}
+    //       schoolTitle = {education.title}
+    //       schoolDate = {education.date}
+    //       handleChange={this.handleChange}
+    //       handleEducation={this.handleEducation}
+    //     />
+    //     )
+    //   }
+    // }
 
 
     return (
@@ -47,19 +103,26 @@ class App extends Component {
                     phone={generalInformation.phone}
                     />
 
-            <Education
-                    schoolName={education.name}
-                    schoolTitle = {education.title}
-                    schoolDate = {education.date}
-                    handleChange={this.handleChange}
-            />
 
+            {this.state.educationArr.length === 0 ? 
+              <Education
+                schoolName={education.name}
+                schoolTitle = {education.title}
+                schoolDate = {education.date}
+                handleChange={this.handleChange}
+                handleEducation={this.handleEducation}
+              /> : null
+            }
+
+
+{educationAdder}
             <Experience 
                     companyName={experience.name}
                     jobTitle={experience.title}
                     tasks={experience.tasks}
                     startDate={experience.dateStart}
                     endDate = {experience.dateEnd}
+                    handleChange={this.handleChange}
             />
 
 
