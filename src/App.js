@@ -38,15 +38,19 @@ class App extends Component {
         <MainForm 
                   handleChange={this.handleChange} 
 
+                  firstName={generalInformation.firstName}
+                  lastName={generalInformation.lastName}
+                  email={generalInformation.email}
+                  phone={generalInformation.phone}
                   schoolName={education.name}
                   schoolTitle = {education.title}
                   schoolDate = {education.date}
-                  companyName={experience.name}
-
-
-                  firstName={generalInformation.firstName}
-                  lastName={generalInformation.lastName}
                   
+                  companyName={experience.name}
+                  jobTitle={experience.title}
+                  tasks={experience.tasks}
+                  startDate={experience.dateStart}
+                  endDate = {experience.dateEnd}
                   />
       </main>
 
