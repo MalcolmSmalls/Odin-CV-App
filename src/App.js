@@ -3,6 +3,8 @@ import React, { Component } from "react"
 import GeneralInformation from "./Components/GeneralInformation"
 import Education from "./Components/Education"
 import Experience from "./Components/Experience"
+import { nanoid } from "nanoid"
+import Display from "./Components/Display"
 
 class App extends Component {
   constructor () {
@@ -11,20 +13,22 @@ class App extends Component {
       generalInformation: { firstName: "", lastName: "", email: "", phone: ""},
       education: {name: "", title: "", date: ""},
       experience: {name: "", title: "", tasks: "", dateStart: "", dateEnd: ""},
-      educationArr: [],
+      educationArr: [{name: "", title: "", date: "", id: nanoid()}],
       experienceArr: []
     }
   }
+
+
 
   handleChange = (event) => { 
       const { name, value, className } = event.target
       this.setState(prevState => {
       if(className === "generalInformation"){
-        return {generalInformation: {...prevState.generalInformation, [name]: value}}
+        return {generalInformation: {...prevState.generalInformation, [name]: value, id: nanoid()}}
       }else if(className === "education"){
-        return {education: {...prevState.education, [name]: value}}
+        return {education: {...prevState.education, [name]: value, id: nanoid()}}
       }else if(className === "experience"){
-        return {experience: {...prevState.experience, [name]: value}}
+        return {experience: {...prevState.experience, [name]: value, id: nanoid()}}
       }
 }
     )
@@ -55,8 +59,14 @@ class App extends Component {
     })
 
 
-    console.log(this.state.educationArr)
 
+
+    console.log(event)
+
+  }
+
+  handleSubmit = (event) => {
+    event.preventDefault()
   }
 
 
@@ -68,11 +78,13 @@ class App extends Component {
     const educationAdder = this.state.educationArr.map(school => {
       return(
         <Education
-        schoolName={education.name}
-        schoolTitle = {education.title}
-        schoolDate = {education.date}
+        schoolName={school.name}
+        schoolTitle = {school.title}
+        schoolDate = {school.date}
         handleChange={this.handleChange}
         handleEducation={this.handleEducation}
+        key={school.id}
+        array = {this.state.educationArr}
       />
       )
     })
@@ -104,18 +116,18 @@ class App extends Component {
                     />
 
 
-            {this.state.educationArr.length === 0 ? 
+            {/* {this.state.educationArr.length === 0 && 
               <Education
                 schoolName={education.name}
                 schoolTitle = {education.title}
                 schoolDate = {education.date}
                 handleChange={this.handleChange}
                 handleEducation={this.handleEducation}
-              /> : null
-            }
+              /> 
+            } */}
 
 
-{educationAdder}
+            {educationAdder}
             <Experience 
                     companyName={experience.name}
                     jobTitle={experience.title}
@@ -128,11 +140,14 @@ class App extends Component {
 
             
               <div className="submit-div">
-                  <button>Submit</button>
-                  <button>Edit</button>
+                  {/* <button onClick = {this.handleSubmit}>Submit</button>
+                  <button>Edit</button> */}
 
               </div>
         </form>
+            <div className="results">
+              <Display state = {this.state}/>
+            </div>
 
       </main>
 
