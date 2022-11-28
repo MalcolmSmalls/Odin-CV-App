@@ -1,0 +1,14 @@
+
+.cv-results {
+  display:flex;
+  justify-content:center;
+  text-align:center;
+}
+
+.cv-results span {
+  display:block;
+}
+
+.cv-results h1 {
+  margin-bottom:0px;
+}
