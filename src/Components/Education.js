@@ -30,7 +30,7 @@ export default function Education (props) {
                 className = "education"
                 />
                 
-                <button type="button" onClick={props.handleEducation}>Add Education</button>
+                <button type="button" >Add Education</button>
 
             </div>
         )

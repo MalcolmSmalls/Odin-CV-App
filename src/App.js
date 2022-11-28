@@ -13,7 +13,7 @@ class App extends Component {
       generalInformation: { firstName: "", lastName: "", email: "", phone: ""},
       education: {name: "", title: "", date: ""},
       experience: {name: "", title: "", tasks: "", dateStart: "", dateEnd: ""},
-      educationArr: [{name: "", title: "", date: "", id: nanoid()}],
+      educationArr: [],
       experienceArr: []
     }
   }
@@ -50,20 +50,6 @@ class App extends Component {
 //   }
 
 
-  handleEducation = (event) => {
-    event.preventDefault()
-    const { name, value } = event.target
-    
-    this.setState(prevState => {
-      return {educationArr: [...prevState.educationArr, prevState.education]}
-    })
-
-
-
-
-    console.log(event)
-
-  }
 
   handleSubmit = (event) => {
     event.preventDefault()
@@ -75,32 +61,6 @@ class App extends Component {
     const { generalInformation, education, experience } = this.state
     
 
-    const educationAdder = this.state.educationArr.map(school => {
-      return(
-        <Education
-        schoolName={school.name}
-        schoolTitle = {school.title}
-        schoolDate = {school.date}
-        handleChange={this.handleChange}
-        handleEducation={this.handleEducation}
-        key={school.id}
-        array = {this.state.educationArr}
-      />
-      )
-    })
-    // const educationAdder = function () {
-    //   for(let i = 0; i <= this.state.educationArr.length; i++){
-    //     return(
-    //       <Education
-    //       schoolName={education.name}
-    //       schoolTitle = {education.title}
-    //       schoolDate = {education.date}
-    //       handleChange={this.handleChange}
-    //       handleEducation={this.handleEducation}
-    //     />
-    //     )
-    //   }
-    // }
 
 
     return (
@@ -116,18 +76,13 @@ class App extends Component {
                     />
 
 
-            {/* {this.state.educationArr.length === 0 && 
               <Education
                 schoolName={education.name}
                 schoolTitle = {education.title}
                 schoolDate = {education.date}
                 handleChange={this.handleChange}
-                handleEducation={this.handleEducation}
               /> 
-            } */}
 
-
-            {educationAdder}
             <Experience 
                     companyName={experience.name}
                     jobTitle={experience.title}
